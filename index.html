@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html ng-app="PizzaPlanetApp">
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic,700italic|Oswald' rel='stylesheet' type='text/css'>
+    <link href="css/style.css" rel="stylesheet" />
+    <script src="scripts/angular.js"></script>
+</head>
+<body>
+    <div class="header">
+        <h1><span>Food</span><span>Planet</span></h1>
+    </div>
+    <div class="main" ng-controller="MainController">
+        <p>Search by Cuisine Type</p>
+        <select ng-model="selectCuisine">
+            <option value="">SELECT</option>
+            <option ng-repeat="p in foodType">{{p}}</option>
+        </select>
+        <div class="container">
+            <h1>Specials for {{ today | date }}</h1>
+            <h2>Appetizers</h2>
+            <div class="appetizers row" ng-repeat="items in appetizers | filter:showByCuisineType">
+                <div class="item col-md-9">
+                    <h3 class="name">{{ items.name }}</h3>
+                    <p class="description">{{ items.description }}</p>
+                </div>
+                <div class="price col-md-3">
+                    <p class="price">{{ items.price | currency }}</p>
+                </div>
+            </div>
+            <h2>Mains</h2>
+            <div class="mains row" ng-repeat="main in mains | filter:showByCuisineType">
+                <div class="item col-md-9">
+                    <h3 class="name">{{ main.name }}</h3>
+                    <p class="description">{{ main.description }}</p>
+                </div>
+                <div class="price col-md-3">
+                    <p class="price">{{ main.price | currency }}</p>
+                </div>
+            </div>
+
+            <h2>Drinks</h2>
+            <div class="mains row" ng-repeat="drinks in extras | filter:showByCuisineType">
+                <div class="item col-md-9">
+                    <h3 class="name">{{ drinks.name }}</h3>
+                    <p class="description">{{ drinks.description }}</p>
+                </div>
+                <div class="price col-md-3">
+                    <p class="price">{{ drinks.price | currency }}</p>
+                </div>
+            </div>
+    </div><!--container-->
+    </div><!-- main-->
+    <div class="footer">
+    </div>
+
+    <script src="scripts/app.js"></script>
+    <script src="scripts/main_controller.js"></script>
+   </body>
+</html>
